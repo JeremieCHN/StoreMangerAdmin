@@ -1,4 +1,20 @@
 $(function () {
+    $("#sync-btn").click(function() {
+        $.ajax({
+            url: "/api/sync",
+            type: "GET",
+            success: resp => {
+                if (typeof(resp) == "string") {
+                    resp = JSON.parse(resp)
+                }
+                if (resp.code != 0) {
+                    show_err(resp)
+                } else {
+                    show_info("同步完成")
+                }
+            }
+        })
+    })
     $("#logout-btn").click(function () {
         console.log("click")
         $.ajax({

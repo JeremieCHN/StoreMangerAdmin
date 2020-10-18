@@ -134,3 +134,7 @@ def rm_good(Tid, Gid):
 
     models.save()
     return errcode.OK
+
+def sync():
+    models.sync()
+    models.save()

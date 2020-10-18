@@ -2,6 +2,7 @@
 import json
 import time
 import settings
+import copy
 
 ConfigData = { "types": [], "goods": [] }
 OnlineData = { "types": [], "goods": [] }
@@ -62,7 +63,9 @@ class Good():
         return Good(id, title, sub_title, image, detail_imgs)
 
 def sync():
-    OnlineData = ConfigData
+    global OnlineData
+    global ConfigData
+    OnlineData = copy.deepcopy(ConfigData)
     DataVersion = int(time.time())
 
 def load():

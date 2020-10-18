@@ -39,10 +39,10 @@
                 <a class="nav-link text-light {% if choise==1 %}font-weight-bold{% endif %}" href="/admin/config">配置</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light {% if choise==2 %}font-weight-bold{% endif %}" href="/admin">线上</a>
+                <a class="nav-link text-light {% if choise==2 %}font-weight-bold{% endif %}" href="/admin/online">线上</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-light {% if choise==3 %}font-weight-bold{% endif %}" href="/admin">同步</a>
+            <li id="sync-btn" class="nav-item">
+                <a class="nav-link text-light {% if choise==3 %}font-weight-bold{% endif %}" href="javascript:;">同步</a>
             </li>
         </ul>
         <span class="navbar-text text-light" id="username">当前用户：{{ username }}</span>

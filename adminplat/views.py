@@ -25,5 +25,6 @@ def config():
     return render_template("config.html")
 
 @admin.route('/online', methods=['GET'])
+@login_require
 def online():
     return render_template("online.html")

@@ -56,6 +56,7 @@ def data_config():
 
 @api.route('/data/online', methods=['GET'])
 def data_online():
+    print(models.OnlineData)
     return __resp(data_str=json.dumps(models.encode_data(models.OnlineData)))
 
 # 数据编辑
@@ -138,3 +139,9 @@ def rm_good():
         return __resp(errcode.RM_GOOD_NO_GOODID)
 
     return __resp(M.rm_good(tid, gid))
+
+@api.route('/sync', methods=['GET'])
+@M.login_require
+def sync():
+    M.sync()
+    return __resp()
