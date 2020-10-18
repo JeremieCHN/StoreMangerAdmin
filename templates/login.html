@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ date_url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" crossorigin="anonymous">
+    <title>登录</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="{{ date_url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ date_url_for('static', filename='js/login.js') }}"></script>
+    <style>
+        .main {
+            max-width: 500px;
+            padding: 15px;
+            margin: auto;
+        }
+    </style>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container">
+            <span class="navbar-brand text-light">登录</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="main">
+            <form>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">用户名</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" id='username'>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">密码</span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password" id='password'>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="login_btn">登录</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="error-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">错误</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span id="error-message"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

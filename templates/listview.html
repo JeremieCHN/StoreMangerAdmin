@@ -1,0 +1,194 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-select.min.css') }}">
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-select.min.js') }}"></script>
+<script type="text/javascript" src="{{ date_url_for('static', filename='js/listview.js') }}"></script>
+
+{% block list_scripts %}
+{% endblock %}
+{% endblock %}
+
+{% block content %}
+<style>
+    #main {
+        padding: 15px;
+    }
+
+    #add_good {
+        display: block;
+        margin: 15px 0 15px auto;
+    }
+
+    #type-btns {
+        display: flex;
+        flex-direction: row-reverse;
+        padding-top: 10px;
+    }
+
+    #type-btns button {
+        margin-left: 10px;
+    }
+
+    .img_list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: start;
+    }
+
+    .img_item {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: 1px solid black;
+        margin: 5px;
+    }
+
+    .add_img_bg {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: 1px solid black;
+        margin: 5px;
+        background-image: url(data:image/png;base64,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);
+    }
+</style>
+
+<div class="container-fluid" id="main">
+    <div class="row">
+        <div id="type-list" class="col-2">
+            <ul class="list-group">
+            </ul>
+            <div id="type-btns">
+                <button class="btn btn-primary" id="add_type">新增类型</button>
+                <button class="btn btn-danger" id="rm_type">删除类型</button>
+            </div>
+        </div>
+        <div id="data-table" class='col-10'>
+            <table class="table table-bordered table-hover text-center text-nowrap">
+                <thead id="data-table-head">
+                    <tr>
+                        <th>小图</th>
+                        <th>主标题</th>
+                        <th>副标题</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="data-table-body">
+                </tbody>
+            </table>
+            <button class="btn btn-primary" id="add_good">新增商品</button>
+        </div>
+    </div>
+</div>
+
+<!-- 新增类型 -->
+<div class="modal" id="add-type-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">请输入新类型名</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input class="form-control" type="text" placeholder="新类型名">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="add-type-confirm">确定</button>
+                <button class="btn btn-secondary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 新增和编辑商品 -->
+<div class="modal" id="good-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">新增商品</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="file" style="display: none;" />
+                    <div class="form-group">
+                        <label>主标题</label>
+                        <input class="form-control" id="good-modal-title" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>副标题</label>
+                        <input class="form-control" id="good-modal-sub-title" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>小图</label>
+                        <div id="good_image">
+                            <img width="50px" height="50px" src="/api/img/160081216244.png">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>详情图</label>
+                        <ul id="good_detail" class="img_list">
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="good-confirm">确定</button>
+                <button class="btn btn-secondary" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 商品详情 -->
+<div class="modal" id="view-type-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="media">
+                    <div class="img_item" style="background-image: url(/api/img/160081216244.png);" class="mr-3"></div>
+                    <div class="media-body">
+                        <h5 class="mt-0">主标题</h5>
+                        <span>副标题</span>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="carouselExampleIndicators" class="carousel slide bg-dark" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                    </ol>
+                    <div class="carousel-inner">
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

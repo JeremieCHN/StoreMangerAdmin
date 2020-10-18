@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+OK                      = { "code":  0, "data": "操作成功" }
+NO_LOGIN                = { "code":  1, "data": "未登录" }
+LOGIN_FAILED            = { "code":  2, "data": "登录失败" }
+ADD_TYPE_NO_NAME        = { "code":  3, "data": "请提供类型名" }
+ADD_TYPE_REPEATED_NAME  = { "code":  4, "data": "类型名重复" }
+RM_TYPE_NO_ID           = { "code":  5, "data": "未提供参数" }
+RM_TYPE_BAD_ID          = { "code":  6, "data": "参数错误" }
+ADD_GOOD_TYPE_ERR       = { "code":  7, "data": "类型参数错误" }
+ADD_GOOD_NEED_IMAGE     = { "code":  8, "data": "需要小图" }
+ADD_GOOD_NEED_TITLE     = { "code":  9, "data": "需要主标题" }
+MD_GOOD_NO_TARGET       = { "code": 10, "data": "未找到对应商品" }
+MD_GOOD_NEED_TITLE      = { "code": 11, "data": "需要主标题"}
+MD_GOOD_NEED_IMAGE      = { "code": 11, "data": "需要小图"}
+MD_GOOD_IMAGE_PATH_ERR  = { "code": 12, "data": "小图参数错误"}
+MD_GOOD_DETAIL_PATH_ERR = { "code": 13, "data": "详情参数错误"}
+UP_IMAGE_NO_DATA        = { "code": 14, "data": "缺乏参数" }
+RM_GOOD_NO_TYPEID       = { "code": 15, "data": "缺少类型参数" }
+RM_GOOD_NO_GOODID       = { "code": 16, "data": "缺少商品参数" }
+RM_GOOD_TID_ERR         = { "code": 17, "data": "类型参数错误" }
+RM_GOOD_GID_ERR         = { "code": 18, "data": "商品参数错误" }

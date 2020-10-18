@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ date_url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" crossorigin="anonymous">
+    <title>后台管理</title>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ date_url_for('static', filename='js/layout.js') }}"></script>
+    {% block scripts %}
+    {% endblock %}
+
+    <style>
+        #username {
+            padding: .5rem
+        }
+        .table thead th, .table tbody td {
+            padding: 0.8rem;
+            line-height: 1rem;
+            vertical-align: middle;
+        }
+    </style>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <span class="navbar-brand">
+            <img class="d-inline-block align-top" src="{{ url_for('static', filename='favicon.ico') }}" width="30"
+                height="30" alt="" loading="lazy" />
+        </span>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link text-light {% if choise==1 %}font-weight-bold{% endif %}" href="/admin/config">配置</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if choise==2 %}font-weight-bold{% endif %}" href="/admin">线上</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light {% if choise==3 %}font-weight-bold{% endif %}" href="/admin">同步</a>
+            </li>
+        </ul>
+        <span class="navbar-text text-light" id="username">当前用户：{{ username }}</span>
+        <button class="btn btn-light" id="logout-btn">登出</button>
+    </nav>
+    {% block content %}
+    {% endblock %}
+
+
+    <!-- Alert Modal -->
+    <div class="modal" id="alert-modal" tabindex="-2" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="dialog-title" class="modal-title">错误</h5>
+                    <button id="close-dialog-btn" type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span id="dialog-message"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal" id="loading-modal" tabindex="-2" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">请稍候...</h5>
+                </div>
+                <div class="modal-body">
+                    <span id="loading-message"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- danger confirm -->
+    <div class="modal" id="danger-confirm-modal" tabindex="-2" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger"></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" id="danger-confirm"></button>
+                    <button class="btn btn-secondary" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
