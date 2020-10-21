@@ -27,7 +27,7 @@ def __resp(ErrCode=errcode.OK, data_str=None):
 # 登录登出
 @api.route('/login', methods=['POST'])
 def login():
-    data = json.loads(request.data)
+    data = json.loads(str(request.data))
     if 'username' in data and 'password' in data:
         if M.login(data['username'], data['password']):
             return __resp()
