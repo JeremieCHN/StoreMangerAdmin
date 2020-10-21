@@ -56,8 +56,9 @@ def data_config():
 
 @api.route('/data/online', methods=['GET'])
 def data_online():
-    print(models.OnlineData)
-    return __resp(data_str=json.dumps(models.encode_data(models.OnlineData)))
+    d = models.encode_data(models.OnlineData)
+    d['version'] = models.DataVersion
+    return __resp(data_str=json.dumps(d))
 
 # 数据编辑
 @api.route('/add_type', methods=['POST'])

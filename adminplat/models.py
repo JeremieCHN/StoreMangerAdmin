@@ -65,6 +65,7 @@ class Good():
 def sync():
     global OnlineData
     global ConfigData
+    global DataVersion
     OnlineData = copy.deepcopy(ConfigData)
     DataVersion = int(time.time())
 
